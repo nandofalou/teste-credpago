@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -31,7 +31,14 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index', ['filter' => 'authFilter']);
+$routes->get('signin', 'User::signin');
+$routes->post('signin', 'User::login');
+$routes->get('signup', 'User::signup');
+$routes->get('logout', 'User::logout');
+
+$routes->get('passwordrecovery', 'User::passwordrecovery');
+$routes->get('resetpassword/(:any)', 'User::resetpassword/$1');
 
 /*
  * --------------------------------------------------------------------
