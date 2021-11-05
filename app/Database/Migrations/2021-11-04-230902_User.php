@@ -32,7 +32,8 @@ class User extends Migration {
             ],
             'hash' => [
                 'type' => 'VARCHAR',
-                'null' => false,
+                'null' => true,
+                'default' => null,
                 'constraint' => 200,
             ],
             'created_at' => [
