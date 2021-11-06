@@ -24,28 +24,24 @@ class UrlState extends Migration {
             ],
             'url' => [
                 'type' => 'VARCHAR',
-                'null' => true,
+                'null' => false,
                 'constraint' => 200,
             ],
             'status_code' => [
                 'type' => 'INTEGER',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null' => false,
+                'null' => true,
+                'default' => null,
             ],
             'response' => [
                 'type' => 'LONGTEXT',
                 'null' => true,
-            ],
-            'response' => [
-                'type' => 'VARCHAR',
-                'null' => false,
-                'constraint' => 200,
+                'default' => null,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
-                'null' => true,
-                'default' => null,
+                'null' => false,
             ],
             'updated_at' => [
                 'type' => 'DATETIME',

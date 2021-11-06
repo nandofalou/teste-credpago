@@ -41,6 +41,14 @@ class AuthUser {
         return null;
     }
 
+    public function getUserId() {
+        if ($this->logged()) {
+            $user = $this->session->get('user');
+            return $user->id;
+        }
+        return null;
+    }
+
     public function logged() {
         $user = $this->session->get('user');
         if (!empty($user) && is_object($user) && property_exists($user, 'id') && !empty($user->id)) {
@@ -50,6 +58,9 @@ class AuthUser {
     }
 
     public function setFlashdata($type, $message) {
+        if (!is_array($message)) {
+            $message = [$message];
+        }
         $this->session->setFlashdata($type, $message);
     }
 

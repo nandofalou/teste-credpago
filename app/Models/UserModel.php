@@ -30,6 +30,23 @@ class UserModel extends Model {
     //callbacks
     protected $beforeInsert = ['passwordEncrypt'];
     protected $beforeUpdate = ['updatePasswordEncrypt'];
+    //validations
+    protected $validationRules = [
+        'email' => [
+            'rules' => 'required|valid_email|is_unique[users.email]',
+            'errors' => [
+                'required' => 'Informe um email válido.',
+                'is_unique' => 'Esse e-mail não está disponível. Por favor, escolha outro.',
+            ],
+        ],
+        'pass' => [
+            'rules' => 'required|min_length[4]',
+            'errors' => [
+                'required' => 'Informe uma senha.',
+                'min_length' => 'Informe uma senha com pelomenos 4 caracteres.',
+            ],
+        ],
+    ];
 
     public function login($email, $pass) {
         $rs = $this->where('email', $email)->first();
@@ -38,6 +55,14 @@ class UserModel extends Model {
             if (password_verify($pass, $rs->pass)) {
                 return $rs;
             }
+        }
+        return null;
+    }
+
+    public function createHash($id) {
+        $hash = md5($id . time() . rand(0, 500));
+        if ($this->update($id, ['hash' => $hash])) {
+            return $hash;
         }
         return null;
     }
