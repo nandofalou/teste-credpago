@@ -1,1 +1,5 @@
-<a href="<?php echo base_url('logout'); ?>">Logout</a>
+<?php $this->extend('layout/app'); ?>
+<?php $this->section('main'); ?>
+
+
+<?php $this->endsection(); ?>
