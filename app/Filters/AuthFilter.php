@@ -28,7 +28,7 @@ class AuthFilter implements FilterInterface {
 
         $authUser = new AuthUser();
         if (!$authUser->logged()) {
-            $authUser->setFlashdata('error', 'Usuário não está logado');
+            $authUser->setFlashdata('error', 'Faça o login ou crie uma conta');
             return redirect()->to('signin');
         }
     }
