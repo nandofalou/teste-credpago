@@ -7,8 +7,8 @@ use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 
-class Filters extends BaseConfig
-{
+class Filters extends BaseConfig {
+
     /**
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
@@ -16,9 +16,10 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-        'csrf'     => CSRF::class,
-        'toolbar'  => DebugToolbar::class,
+        'csrf' => CSRF::class,
+        'toolbar' => DebugToolbar::class,
         'honeypot' => Honeypot::class,
+        'authFilter' => \App\Filters\AuthFilter::class,
     ];
 
     /**
@@ -29,12 +30,12 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
+        // 'honeypot',
+        // 'csrf',
         ],
         'after' => [
             'toolbar',
-            // 'honeypot',
+        // 'honeypot',
         ],
     ];
 
@@ -59,4 +60,5 @@ class Filters extends BaseConfig
      * @var array
      */
     public $filters = [];
+
 }

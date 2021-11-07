@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -31,8 +31,30 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('sync', 'Home::sync');
 
+$routes->get('/', 'Home::index', ['filter' => 'authFilter']);
+
+$routes->get('signin', 'User::signin');
+$routes->post('signin', 'User::login');
+$routes->get('signup', 'User::signup');
+$routes->post('signup', 'User::register');
+$routes->get('logout', 'User::logout');
+
+$routes->get('passwordrecovery', 'User::passwordrecovery');
+$routes->post('passwordrecovery', 'User::sendpasswordrecovery');
+$routes->get('resetpassword/(:any)', 'User::resetpassword/$1');
+$routes->post('resetpassword/(:any)', 'User::changepassword/$1');
+
+
+$routes->group('/', ['filter' => 'authFilter'], function($routes) {
+    $routes->get('site', 'Site::site');
+    $routes->post('site', 'Site::addsite');
+    $routes->get('site/track', 'Site::track');
+    $routes->get('site/(:num)/delete', 'Site::remove/$1');
+    $routes->get('site/(:num)', 'Site::view/$1');
+    $routes->post('site/(:num)', 'Site::editsite/$1');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
