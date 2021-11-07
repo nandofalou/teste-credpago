@@ -16,19 +16,19 @@ Passos
 - Copie env para .env e adapte para o seu aplicativo, especificamente as configurações de banco de dados.
 
 Para MySQL:
-# para uso do MySQL
-database.default.hostname = localhost
-database.default.database = database_test
-database.default.username = root
-database.default.password = root
-database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
+ - para uso do MySQL
+ - database.default.hostname = localhost
+ - database.default.database = database_test
+ - database.default.username = root
+ - database.default.password = root
+ - database.default.DBDriver = MySQLi
+ - -#database.default.DBPrefix =
 
 Para sqLite
-# para uso do sqLite
-database.default.database = ../writable/database.db
-database.default.DBDriver = SQLite3
-# database.default.DBPrefix =
+- # para uso do sqLite
+- database.default.database = ../writable/database.db
+- database.default.DBDriver = SQLite3
+- -#database.default.DBPrefix =
 
 - Dê permissão de escrita no diretório writable
 - Após configurar o banco de dados (<ySQL ou SqLite), execute as migrations  com o comando $ php spark migrate
