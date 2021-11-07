@@ -1,45 +1,42 @@
-# CodeIgniter 4 Framework
+# Teste prático de PHP
+Este teste foi desenvolvido com o framework Codeigniter 4.1.4
 
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
 More information can be found at the [official site](http://codeigniter.com).
 
-This repository holds the distributable version of the framework,
-including the user guide. It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Como executar
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+O Codeigniter 4 necessita da extensão php-intl e php-mbstring. Verificar se está instalado.
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+Passos
+
+- baixe o repositório para um local válido (Linux Ubuntu /var/www/html/)
+- Copie env para .env e adapte para o seu aplicativo, especificamente as configurações de banco de dados.
+
+Para MySQL:
+# para uso do MySQL
+database.default.hostname = localhost
+database.default.database = database_test
+database.default.username = root
+database.default.password = root
+database.default.DBDriver = MySQLi
+# database.default.DBPrefix =
+
+Para sqLite
+# para uso do sqLite
+database.default.database = ../writable/database.db
+database.default.DBDriver = SQLite3
+# database.default.DBPrefix =
+
+- Dê permissão de escrita no diretório writable
+- Após configurar o banco de dados (<ySQL ou SqLite), execute as migrations  com o comando $ php spark migrate
+- No diretório da aplicação, execute o servidor interno do codeigniter, digitando
+$ php spark serve
+- ou configure o DocumentRoot Apache / Nginx para o diretório public do projeto (o mod-rewrite precisa estar ativo)
 
 
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
 
 ## Server Requirements
 
